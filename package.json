@@ -1,6 +1,6 @@
 {
   "name": "downloadzhihu",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "一键将知乎内容导出为 Markdown 或 Word (.docx) 文件的 Chrome 扩展。支持文章、回答、问题、想法、收藏夹、专栏六种内容类型，自动下载图片、导出评论区。",
   "main": "background.js",
   "directories": {
