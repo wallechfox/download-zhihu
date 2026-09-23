@@ -328,9 +328,9 @@ body {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--mo-ghost);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
 }
 
 .folder-display:hover {
@@ -370,6 +370,29 @@ body {
   background: var(--mo) !important;
   border-color: var(--mo-light) !important;
   animation-delay: 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.log-panel-card .ant-card-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4A4540 transparent;
+}
+
+.log-panel-card .ant-card-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.log-panel-card .ant-card-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.log-panel-card .ant-card-body::-webkit-scrollbar-thumb {
+  background: #4A4540;
+  border-radius: 2px;
 }
 
 .log-panel-card .ant-card-head {
@@ -389,25 +412,10 @@ body {
 }
 
 .log-scroll {
-  overflow-y: visible;
   font-family: var(--font-mono);
   font-size: 0.73rem;
   line-height: 1.8;
   color: #C7C2B8;
-  padding-top: 0.5rem;
-}
-
-.log-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-
-.log-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.log-scroll::-webkit-scrollbar-thumb {
-  background: #4A4540;
-  border-radius: 2px;
 }
 
 .log-scroll .log-entry {
@@ -490,7 +498,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
   margin-top: 0;
-  align-items: start;
+  align-items: stretch;
 }
 
 .export-left-col {
@@ -501,9 +509,9 @@ body {
 }
 
 .export-right-col {
-  position: sticky;
-  top: 1rem;
   min-width: 0;
+  height: 0;
+  min-height: 100%;
 }
 
 .export-right-col .log-panel-card {
@@ -567,7 +575,16 @@ body {
   }
 
   .export-right-col {
-    position: static;
+    height: auto;
+    min-height: 0;
+  }
+
+  .export-right-col .log-panel-card {
+    height: auto;
+  }
+
+  .log-panel-card .ant-card-body {
+    max-height: 50vh;
   }
 
   .app-header {

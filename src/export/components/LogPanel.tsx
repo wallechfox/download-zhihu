@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Card } from 'antd';
 import { useUIStore } from '@/shared/stores/uiStore';
 
@@ -11,10 +11,18 @@ const levelClasses: Record<string, string> = {
 
 export function LogPanel() {
   const logs = useUIStore((s) => s.logs);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const body = scrollRef.current?.parentElement;
+    if (body) {
+      body.scrollTop = body.scrollHeight;
+    }
+  }, [logs]);
 
   return (
     <Card title={<><span className="title-decoration">录</span>操作日志</>} className="log-panel-card">
-      <div className="log-scroll">
+      <div ref={scrollRef} className="log-scroll">
         {logs.map((log, i) => (
           <div key={i} className="log-entry">
             <span className="log-time">[{log.time}]</span>

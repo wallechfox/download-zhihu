@@ -55,7 +55,7 @@ export function FolderPicker({ collectionId, collectionName }: Props) {
   return (
     <Card title={<><span className="title-decoration">一</span>选择目录</>}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <div className="folder-display">
+        <div className="folder-display" title={dirHandle ? dirHandle.name : undefined}>
           {dirHandle ? dirHandle.name : '未选择文件夹'}
         </div>
         <Button icon={<FolderOpenOutlined />} onClick={() => pickFolderAndLoadProgress(collectionId, collectionName)}>
